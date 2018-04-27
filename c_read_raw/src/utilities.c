@@ -16,8 +16,8 @@ unsigned *read_raw(const char *fname, unsigned width, unsigned height, unsigned 
     fread(buffer, sizeof(buffer), 1, ptr);
 
     unsigned *retval;
-    retval = malloc(width * height * sizeof(unsigned*));
-
+    retval = malloc(width * height * sizeof(unsigned));
+    //printf("%lu   %lu\n", sizeof(unsigned), sizeof(unsigned*));
     for (int i = 0; i < width*height; i++) {
         unsigned value = 0;
         for (int b = 0; b < bytes; b++) 
