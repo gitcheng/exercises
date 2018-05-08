@@ -1,0 +1,38 @@
+Test GSL: GNU Scientific Library
+
+Website: https://www.gnu.org/software/gsl/
+
+Version: gsl-2.4
+
+Install: 
+  - unzip the downloaded file
+  - cd to the directory gsl-2.4
+  - ./configure
+  - make
+  - make install
+
+  Note that on Windows 7, using MinGW, for some reason aliasing make mingw32-make
+  still does not allow the Makefile to find "make". The solution is to make a soft
+  link in /c/MinGW/bin  make->mingw32-make
+  
+  Also, on Windows, some programs that are needed may be under C:/Program Files/
+  The compiler does not like the space in the file name and the error such as
+
+     sh: C:\Program: No such file or directory
+
+  may occur. One solution is to reinstall those programs under C:/ directly, 
+  rather than under C:/Program Files/.
+
+  For some reason, make install has trouble installing doc directory. So doc is
+  removed from SUBDIRS by hand to skip installing doc.
+
+To compile, for example
+
+   gcc main.c -Wall -I"/usr/local/include/" -L"/usr/local/lib/" -lm  -lgsl -lgslcblas
+
+or
+
+   gcc main.c -Wall $(gsl-config --cflags) $(gsl-config --libs) -o main
+
+
+  
